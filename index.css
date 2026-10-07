@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: #0a0a09;
+  --color-surface: #121211;
+  --color-elev: #1b1b19;
+  --color-ink: #ece8df;
+  --color-muted: #8b887e;
+  --color-acid: #d7f431;
+  --color-line: rgba(236, 232, 223, 0.1);
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-marquee-fast: marquee 20s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html,
+body {
+  background: var(--color-bg);
+}
+
+body {
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: #0a0a09;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a09;
+}
+::-webkit-scrollbar-thumb {
+  background: #26261f;
+  border-radius: 8px;
+  border: 2px solid #0a0a09;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a30;
+}
+
+/* Кастомный курсор — только для точных указателей */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
+}
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(236, 232, 223, 0.3);
+  color: transparent;
+}
+.text-outline-dim {
+  -webkit-text-stroke: 1px rgba(236, 232, 223, 0.14);
+  color: transparent;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.mask-fade-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
